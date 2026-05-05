@@ -59,8 +59,11 @@ def benchmark_interpolation(img_4k, target_size=(224, 224), iterations=100):
             # Replace the placeholder below with the correct cv2.resize call.
             # Pass the 'flag' variable to the interpolation parameter.
             # ---------------------------------------------------------
-            # resized_img = ...
-            pass # Remove this when implemented
+            if flag == "TODO_FLAG_1": interp_flag = cv2.INTER_NEAREST
+            elif flag == "TODO_FLAG_2": interp_flag = cv2.INTER_LINEAR
+            elif flag == "TODO_FLAG_3": interp_flag = cv2.INTER_CUBIC
+            resized_img = cv2.resize(img_4k, target_size, interpolation=interp_flag)
+            #pass # Remove this when implemented
             
             end_time = time.perf_counter()
             times_ms.append((end_time - start_time) * 1000)
@@ -74,8 +77,8 @@ def benchmark_interpolation(img_4k, target_size=(224, 224), iterations=100):
         # mean_time = ...
         # std_time = ...
         
-        mean_time = 0.0 # Placeholder
-        std_time = 0.0  # Placeholder
+        mean_time = np.mean(times_ms) # Placeholder
+        std_time = np.std(times_ms)  # Placeholder
         
         results[name] = (mean_time, std_time)
 
